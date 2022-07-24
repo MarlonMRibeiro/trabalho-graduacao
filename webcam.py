@@ -3,6 +3,8 @@ import cv2
 
 webcam = cv2.VideoCapture(0)
 
+aux = 0
+
 if webcam.isOpened():
     validacao, frame = webcam.read()
     while validacao:
@@ -11,7 +13,9 @@ if webcam.isOpened():
         key = cv2.waitKey(10)
         if key == 27: #ESC
             break
-    cv2.imwrite("images/Captura.png", frame)
+        if key == 80 or 112:
+            cv2.imwrite(f"images/image_{aux}.png", frame)
+            aux + 1
 
 webcam.release()
 cv2.destroyAllWindows()
